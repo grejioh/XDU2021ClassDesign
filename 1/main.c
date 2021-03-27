@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 const int LEN = 10000;
-int a[LEN], b[LEN];
+int a[LEN], b[LEN], c[LEN];
 void read(int *a) {
   char s[LEN + 1];
   scanf("%s", s);
@@ -22,8 +22,19 @@ void print(int *a) {
     }
   }
 }
+void add(int *a, int *b, int *c) {
+  for (int i = 0; i < LEN; i++) {
+    c[i] += a[i] + b[i];
+    if (c[i] >= 10) {
+      c[i + 1] += c[i] / 10;
+      c[i] = c[i] % 10;
+    }
+  }
+}
 int main() {
   read(a);
-  print(a);
+  read(b);
+  add(a, b, c);
+  print(c);
   return 0;
 }
