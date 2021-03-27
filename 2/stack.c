@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 const char HELP[] = "Please input operation number:\n0: push\n1: top\n2: "
-                    "pop\n8: show HELP\n9: exit";
+                    "pop\n3: show the whole stack\n8: show HELP\n9: exit\n";
 struct Stack {
   int top;
   int max_size;
@@ -43,11 +43,18 @@ void push(struct Stack *stack, int value) {
   stack->top++;
   stack->array[stack->top] = value;
 }
+void showall(struct Stack *stack) {
+  int n = stack->top;
+  for (int i = n; i >= 0; i--) {
+    printf("%d\n", stack->array[i]);
+  }
+}
 int main() {
   // init a stack, of which max_size == 1000;
   struct Stack *stack = initStack(1000);
   printf("%s", HELP);
-  while (1) {
+  int k = 1000;
+  while (k--) {
     int op, temp;
     printf(">>");
     scanf("%d", &op);
@@ -57,17 +64,19 @@ int main() {
       push(stack, temp);
       break;
     case 1:
-      top(stack);
+      printf("%d\n", top(stack));
       break;
     case 2:
-      pop(stack);
+      printf("%d\n", pop(stack));
+      break;
+    case 3:
+      showall(stack);
       break;
     case 9:
       return 0;
     default:
       printf("%s", HELP);
-
-      printf(">> ");
+      break;
     }
   }
   return 0;
