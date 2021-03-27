@@ -1,3 +1,4 @@
+/*Currenty only supports calculations when all numbers are positive */
 #include <stdio.h>
 #include <string.h>
 const int LEN = 10000;
@@ -43,9 +44,13 @@ void sub(int *a, int *b, int *c) {
 }
 int main() {
   read(a);
+  char op[2];
+  scanf("%s", op);
   read(b);
-  // add(a, b, c);
-  sub(a, b, c);
+  if (op[0] == '+')
+    add(a, b, c);
+  else
+    sub(a, b, c);
   print(c);
   return 0;
 }
