@@ -18,9 +18,10 @@ void print(int *a) {
       continue;
     } else {
       flag = 1;
-      printf("%d", a[i]);
+      printf("%d ", a[i]);
     }
   }
+  printf("\n");
 }
 void add(int *a, int *b, int *c) {
   for (int i = 0; i < LEN; i++) {
@@ -31,10 +32,20 @@ void add(int *a, int *b, int *c) {
     }
   }
 }
+void sub(int *a, int *b, int *c) {
+  for (int i = 0; i < LEN; i++) {
+    c[i] += a[i] - b[i];
+    if (c[i] < 0) {
+      c[i + 1] += -1;
+      c[i] += 10;
+    }
+  }
+}
 int main() {
   read(a);
   read(b);
-  add(a, b, c);
+  // add(a, b, c);
+  sub(a, b, c);
   print(c);
   return 0;
 }
